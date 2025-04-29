@@ -1,0 +1,30 @@
+<div class="main">
+  <!-- <app-header></app-header> -->
+  <div class="form">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div>
+        <input type="email" formControlName="Email" placeholder="Enter Email Here" />
+        <div *ngIf="loginForm.controls['Email'].invalid && loginForm.controls['Email'].touched" class="error">
+          <span *ngIf="loginForm.controls['Email'].errors?.['required']">Email is required</span>
+          <span *ngIf="loginForm.controls['Email'].errors?.['email']">Enter a valid email</span>
+        </div>
+      </div>
+      <div class="password-container">
+        <input [type]="passwordVisible ? 'text' : 'password'" formControlName="Password" placeholder="Enter Password Here" />
+        <i class="fas" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
+        <div *ngIf="loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched" class="error">
+          <span *ngIf="loginForm.controls['Password'].errors?.['required']">Password is required</span>
+        </div>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="btnn btn btn-success" [disabled]="!loginForm.valid">Log in</button>
+        <button type="button" class="btnn btn btn-danger" (click)="resetLoginForm()">Cancel</button>
+      </div>
+      <div class="text-center mt-3">
+        <span>Or</span> &nbsp;
+        <a routerLink="/registration" class="ml-2">Register now!</a>
+      </div>
+    </form>
+  </div>
+</div>

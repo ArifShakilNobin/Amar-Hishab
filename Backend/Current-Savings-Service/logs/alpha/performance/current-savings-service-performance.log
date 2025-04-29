@@ -1,0 +1,4 @@
+2025-02-06T12:00:23.545+06:00 TRACE [current-savings-service,,] 12092 --- [http-nio-8080-exec-1] performanceLogger                        : Executed jdk.proxy2.$Proxy178.findAll in 540 milliseconds
+2025-02-06T12:00:48.836+06:00 TRACE [current-savings-service,,] 12092 --- [http-nio-8080-exec-2] performanceLogger                        : Executed jdk.proxy2.$Proxy178.findAll in 560 milliseconds
+2025-02-06T12:06:02.572+06:00 TRACE [current-savings-service,,] 12092 --- [http-nio-8080-exec-4] performanceLogger                        : Executed jdk.proxy2.$Proxy178.findAll in 285 milliseconds
+2025-02-06T12:14:59.854+06:00 TRACE [current-savings-service,,] 4672 --- [http-nio-8080-exec-1] performanceLogger                        : Executed jdk.proxy2.$Proxy178.findAll in 348 milliseconds

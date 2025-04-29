@@ -1,0 +1,29 @@
+#spring:
+#  profiles:
+#    active: ${ACTIVE_PROFILE:alpha}
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled:true
+---
+server:
+  port: 8761
+  shutdown: graceful
+
+spring:
+  application:
+    name: service-discovery
+  config:
+    activate:
+      on-profile: default
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

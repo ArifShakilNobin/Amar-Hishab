@@ -1,0 +1,23 @@
+server:
+  port: 8080 # Gateway port
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: current-savings-service
+          uri: lb://current-savings-service
+          predicates:
+            - Path=/current-savings/**
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5 # in seconds
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

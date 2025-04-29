@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: current-savings-service
+  profiles:
+    active: dev
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+log:
+  dir: current-savings-service-logs
