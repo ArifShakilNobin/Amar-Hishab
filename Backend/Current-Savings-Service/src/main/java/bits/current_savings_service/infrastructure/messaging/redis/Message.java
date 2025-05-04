@@ -1,4 +1,4 @@
-package bits.current_savings_service.domain.redis;
+package bits.current_savings_service.infrastructure.messaging.redis;
 
 import lombok.Getter;
 import lombok.Setter;

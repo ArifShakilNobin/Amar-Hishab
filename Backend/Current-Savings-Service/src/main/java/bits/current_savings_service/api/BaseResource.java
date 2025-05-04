@@ -1,6 +1,6 @@
 package bits.current_savings_service.api;
 
-import bits.current_savings_service.domain.enums.ResponseMessage;
+import bits.current_savings_service.domain.Enums.ResponseMessage;
 import bits.current_savings_service.service.LocaleMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 

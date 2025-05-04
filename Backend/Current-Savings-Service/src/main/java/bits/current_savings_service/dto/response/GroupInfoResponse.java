@@ -1,4 +1,4 @@
-package bits.current_savings_service.domain.response;
+package bits.current_savings_service.dto.response;
 
 import bits.current_savings_service.domain.Entity.GroupInfo;
 import lombok.*;

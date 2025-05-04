@@ -21,7 +21,6 @@ public class VoController extends BaseResource {
 //        PaginationResponse<GroupInfoResponse> groupInfo = groupInfoService.getGroupInfo(pageNumber, pageSize, sortBy, sortOrder);
 //
 ////        logger.error("Group Info: " + groupInfo.toString());
-//        return ResponseUtils.createResponseObject(getMessage(ResponseMessage.OPERATION_SUCCESSFUL), groupInfo);
 //    }
 
 

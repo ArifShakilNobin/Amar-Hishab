@@ -5,7 +5,7 @@ import bits.current_savings_service.common.exceptions.FeignClientException;
 import bits.current_savings_service.common.exceptions.PreValidationException;
 import bits.current_savings_service.common.logger.CurrentSavingsServiceLogger;
 import bits.current_savings_service.domain.Common.ApiResponse;
-import bits.current_savings_service.domain.enums.ResponseMessage;
+import bits.current_savings_service.domain.Enums.ResponseMessage;
 import bits.current_savings_service.service.LocaleMessageService;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;

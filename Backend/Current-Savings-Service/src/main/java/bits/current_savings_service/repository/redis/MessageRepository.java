@@ -1,6 +1,6 @@
 package bits.current_savings_service.repository.redis;
 
-import bits.current_savings_service.domain.redis.Message;
+import bits.current_savings_service.infrastructure.messaging.redis.Message;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

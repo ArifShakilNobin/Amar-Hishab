@@ -1,9 +1,9 @@
 package bits.current_savings_service.service;
 
 import bits.current_savings_service.domain.Entity.LocaleMessage;
-import bits.current_savings_service.domain.enums.ResponseMessage;
+import bits.current_savings_service.domain.Enums.ResponseMessage;
 import bits.current_savings_service.domain.enums.SpecialCharsEnum;
-import bits.current_savings_service.domain.redis.Message;
+import bits.current_savings_service.infrastructure.messaging.redis.Message;
 import bits.current_savings_service.repository.LocaleMessageRepository;
 import bits.current_savings_service.repository.redis.MessageRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;

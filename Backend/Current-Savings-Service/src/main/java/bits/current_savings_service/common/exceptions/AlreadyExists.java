@@ -1,11 +1,11 @@
 package bits.current_savings_service.common.exceptions;
 
 
-import bits.current_savings_service.domain.enums.ResponseMessage;
+import bits.current_savings_service.domain.Enums.ResponseMessage;
 
 public class AlreadyExists extends CustomRootException {
     public AlreadyExists(ResponseMessage responseMessage) {
-        super(responseMessage);
+        super(String.valueOf(responseMessage));
     }
 
     public AlreadyExists(String messageCode, String messageKey) {

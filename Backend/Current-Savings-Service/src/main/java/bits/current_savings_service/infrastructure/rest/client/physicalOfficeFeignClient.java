@@ -1,4 +1,4 @@
-package bits.current_savings_service.rest.client;
+package bits.current_savings_service.infrastructure.rest.client;
 
 
 import org.springframework.cloud.openfeign.FeignClient;

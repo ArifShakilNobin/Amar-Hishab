@@ -2,8 +2,8 @@ package bits.current_savings_service.service;
 
 import bits.current_savings_service.common.exceptions.RecordNotFoundException;
 import bits.current_savings_service.common.logger.CurrentSavingsServiceLogger;
-import bits.current_savings_service.domain.enums.ResponseMessage;
-import bits.current_savings_service.domain.kafka.EventWrapper;
+import bits.current_savings_service.domain.Enums.ResponseMessage;
+import bits.current_savings_service.infrastructure.messaging.kafka.EventWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -75,11 +75,10 @@ public class BaseService {
         Optional<String> userTokenOpt = getHeaderValue(CURRENT_USER_CONTEXT_HEADER);
 
         if (userTokenOpt.isEmpty())
-            throw new RecordNotFoundException(ResponseMessage.RECORD_NOT_FOUND);
+            throw new RecordNotFoundException(ResponseMessage.RECORD_NOT_FOUND.getResponseMessage());
 
         return userTokenOpt.get();
     }
-
 
     public <T> T toObject(String jsonString, Class<T> clazz) {
         try {
@@ -89,7 +88,6 @@ public class BaseService {
         }
         return null;
     }
-
 
     public EventWrapper<Object> prepareKafkaObject(String requestId, Timestamp timestamp, Object data) {
         return new EventWrapper<>(requestId, timestamp, data);

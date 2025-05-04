@@ -15,7 +15,6 @@ public class PhysicalOfficeController extends BaseResource {
 ////    @GetMapping()
 ////    public ApiResponse<List<PhysicalOfficeInfo>> getAllPhysicalOffice(){
 ////        List<PhysicalOfficeInfo> physicalOfficeInfos = iphysicalOfficeInfoService.getAllPhysicalOffice();
-////        return ResponseUtils.createResponseObject(getMessage(ResponseMessage.OPERATION_SUCCESSFUL), physicalOfficeInfos);
 ////
 ////    }
 //

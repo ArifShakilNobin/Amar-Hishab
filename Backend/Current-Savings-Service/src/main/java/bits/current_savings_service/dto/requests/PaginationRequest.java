@@ -1,4 +1,4 @@
-package bits.current_savings_service.domain.requests;
+package bits.current_savings_service.dto.requests;
 
 
 import lombok.AllArgsConstructor;

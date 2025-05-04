@@ -1,0 +1,55 @@
+package bits.current_savings_service.common.advice;
+
+import bits.current_savings_service.dto.response.ApiResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.core.MethodParameter;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import java.time.LocalDateTime;
+
+@ControllerAdvice
+@RequiredArgsConstructor
+public class GlobalApiResponseWrapper implements ResponseBodyAdvice<Object> {
+    private final HttpServletRequest httpServletRequest;
+
+    @Override
+    public boolean supports(MethodParameter returnType, Class converterType) {
+        // Apply only if the return type is not already ApiResponse
+        return !returnType.getParameterType().equals(ApiResponse.class);
+    }
+
+    @Override
+    public Object beforeBodyWrite(Object body,
+                                  MethodParameter returnType,
+                                  MediaType selectedContentType,
+                                  Class<? extends HttpMessageConverter<?>> selectedConverterType,
+                                  ServerHttpRequest request,
+                                  ServerHttpResponse response) {
+
+        // If it's already ApiResponse, just inject path/timestamp if missing
+        if (body instanceof ApiResponse<?> apiResponse) {
+            if (apiResponse.getPath() == null) {
+                apiResponse.setPath(httpServletRequest.getRequestURI());
+            }
+            if (apiResponse.getTimestamp() == null) {
+                apiResponse.setTimestamp(LocalDateTime.now());
+            }
+            return apiResponse;
+        }
+
+        // Wrap any other response type in ApiResponse
+        return ApiResponse.builder()
+                .responseCode("200")
+                .responseMessage("Operation successful")
+                .data(body)
+                .path(httpServletRequest.getRequestURI())
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+}

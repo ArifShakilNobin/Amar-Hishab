@@ -1,4 +1,4 @@
-package bits.current_savings_service.domain.kafka;
+package bits.current_savings_service.infrastructure.messaging.kafka;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

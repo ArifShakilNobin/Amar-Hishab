@@ -2,9 +2,9 @@ package bits.current_savings_service.service.impl;
 
 import bits.current_savings_service.common.logger.CurrentSavingsServiceLogger;
 import bits.current_savings_service.common.utils.PageUtils;
-import bits.current_savings_service.domain.requests.PaginationRequest;
-import bits.current_savings_service.domain.response.GroupInfoResponse;
-import bits.current_savings_service.domain.response.PaginationResponse;
+import bits.current_savings_service.dto.requests.PaginationRequest;
+import bits.current_savings_service.dto.response.GroupInfoResponse;
+import bits.current_savings_service.dto.response.PaginationResponse;
 import bits.current_savings_service.repository.GroupInfoRepository;
 import bits.current_savings_service.service.BaseService;
 import bits.current_savings_service.service.IGroupInfoService;

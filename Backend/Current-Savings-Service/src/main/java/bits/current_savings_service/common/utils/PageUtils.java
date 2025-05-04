@@ -1,7 +1,7 @@
 package bits.current_savings_service.common.utils;
 
-import bits.current_savings_service.domain.requests.PaginationRequest;
-import bits.current_savings_service.domain.response.PaginationResponse;
+import bits.current_savings_service.dto.requests.PaginationRequest;
+import bits.current_savings_service.dto.response.PaginationResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

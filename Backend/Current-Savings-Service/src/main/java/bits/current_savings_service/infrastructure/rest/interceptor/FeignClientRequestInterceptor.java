@@ -1,4 +1,4 @@
-package bits.current_savings_service.rest.interceptor;
+package bits.current_savings_service.infrastructure.rest.interceptor;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

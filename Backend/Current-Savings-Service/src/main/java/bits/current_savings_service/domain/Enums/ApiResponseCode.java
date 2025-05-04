@@ -1,4 +1,4 @@
-package bits.current_savings_service.domain.enums;
+package bits.current_savings_service.domain.Enums;
 
 import bits.current_savings_service.domain.Common.ApiResponse;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,8 @@ public enum ApiResponseCode {
     REQUEST_PROCESSING_FAILED("RPF000113"),
     INVALID_REQUEST_DATA("E000102"),
     RECORD_NOT_FOUND("E000103"),
-
+    ALREADY_EXIST("AE00185"),
+    VALIDATION_FAILED("VF000114"),
 
     ;
 

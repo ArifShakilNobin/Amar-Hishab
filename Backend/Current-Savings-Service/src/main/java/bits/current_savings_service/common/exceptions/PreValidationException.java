@@ -1,7 +1,7 @@
 package bits.current_savings_service.common.exceptions;
 
 
-import bits.current_savings_service.domain.enums.ResponseMessage;
+import bits.current_savings_service.domain.Enums.ResponseMessage;
 
 public abstract class PreValidationException extends CustomRootException {
     public PreValidationException(ResponseMessage responseMessage) {
