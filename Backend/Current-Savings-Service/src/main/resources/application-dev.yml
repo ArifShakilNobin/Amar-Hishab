@@ -5,14 +5,17 @@ spring:
   application:
     name: current-savings-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/Amar_Hishab
+    url: jdbc:postgresql://localhost:5432/current_savings
     username: postgres
     password: root
+#    url: jdbc:postgresql://10.42.65.131:4550/sbicloud_bd_smalldb
+#    username: bits
+#    password: biTS@#123
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: postgres
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: false
@@ -25,6 +28,10 @@ spring:
         order_updates: true
         temp:
           use_jdbc_metadata_defaults: false
+  flyway:
+    enabled: true
+    locations: classpath:resources/db/V2__.sql
+    baseline-on-migrate: true
 eureka:
   instance:
     prefer-ip-address: true
@@ -38,7 +45,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-#logging:
-#  config: classpath:log/logback-alpha.xml
-#
-#debug: true
+logging:
+  config: classpath:log/logback-alpha.xml
+  level:
+    org.hibernate.orm: INFO

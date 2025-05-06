@@ -1,5 +1,6 @@
 package bits.current_savings_service.common.advice;
 
+import bits.current_savings_service.domain.Enums.ResponseMessage;
 import bits.current_savings_service.dto.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -8,12 +9,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.time.LocalDateTime;
 
-@ControllerAdvice
+@RestControllerAdvice
 @RequiredArgsConstructor
 public class GlobalApiResponseWrapper implements ResponseBodyAdvice<Object> {
     private final HttpServletRequest httpServletRequest;
@@ -45,8 +46,8 @@ public class GlobalApiResponseWrapper implements ResponseBodyAdvice<Object> {
 
         // Wrap any other response type in ApiResponse
         return ApiResponse.builder()
-                .responseCode("200")
-                .responseMessage("Operation successful")
+                .responseCode(ResponseMessage.OPERATION_SUCCESSFUL.getResponseCode())
+                .responseMessage(ResponseMessage.OPERATION_SUCCESSFUL.getResponseMessage())
                 .data(body)
                 .path(httpServletRequest.getRequestURI())
                 .timestamp(LocalDateTime.now())

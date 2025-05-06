@@ -9,59 +9,52 @@ import java.util.Objects;
 
 public class ResponseUtils {
 
-    public static <T> ApiResponse<T> createResponseObject(String message, String path) {
+    public static <T> ApiResponse<T> createResponseObject(String message) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setResponseCode(ResponseMessage.OPERATION_SUCCESSFUL.getResponseCode());
         apiResponse.setResponseMessage(message);
-        apiResponse.setPath(path);
         apiResponse.setTimestamp(LocalDateTime.now());
         return apiResponse;
     }
 
-    public static <T> ApiResponse<T> createResponseObject(String message, T data, String path) {
+    public static <T> ApiResponse<T> createResponseObject(String message, T data) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setResponseCode(ResponseMessage.OPERATION_SUCCESSFUL.getResponseCode());
         apiResponse.setResponseMessage(message);
         apiResponse.setData(data);
-        apiResponse.setPath(path);
         apiResponse.setTimestamp(LocalDateTime.now());
         return apiResponse;
     }
 
-    public static <T> ApiResponse<T> createResponseObject(ResponseMessage responseMessage, T data, String path) {
+    public static <T> ApiResponse<T> createResponseObject(ResponseMessage responseMessage, T data) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setResponseCode(responseMessage.getResponseCode());
         apiResponse.setResponseMessage(responseMessage.getResponseMessage());
         apiResponse.setData(data);
-        apiResponse.setPath(path);
         apiResponse.setTimestamp(LocalDateTime.now());
         return apiResponse;
     }
 
-    public static <T> ApiResponse<T> createResponseObject(ResponseMessage responseMessage, String path) {
+    public static <T> ApiResponse<T> createResponseObject(ResponseMessage responseMessage) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setResponseCode(responseMessage.getResponseCode());
         apiResponse.setResponseMessage(responseMessage.getResponseMessage());
-        apiResponse.setPath(path);
         apiResponse.setTimestamp(LocalDateTime.now());
         return apiResponse;
     }
 
-    public static <T> ApiResponse<T> createResponseObject(String code, String message, String path) {
+    public static <T> ApiResponse<T> createResponseObject(String code, String message) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setResponseCode(code);
         apiResponse.setResponseMessage(message);
-        apiResponse.setPath(path);
         apiResponse.setTimestamp(LocalDateTime.now());
         return apiResponse;
     }
 
-    public static <T> ApiResponse<T> createSuccessfulResponse(String path) {
+    public static <T> ApiResponse<T> createSuccessfulResponse() {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setResponseCode(ResponseMessage.OPERATION_SUCCESSFUL.getResponseCode());
         apiResponse.setResponseMessage("Operation is completed successfully.");
-        apiResponse.setPath(path);
-        apiResponse.setTimestamp(LocalDateTime.now());
         return apiResponse;
     }
 

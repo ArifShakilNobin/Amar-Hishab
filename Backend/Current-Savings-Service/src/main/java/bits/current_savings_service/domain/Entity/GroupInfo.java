@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "group_info")
+@Table(name = "group_infos")
 public class GroupInfo extends Audit implements Serializable {
 
     @Id

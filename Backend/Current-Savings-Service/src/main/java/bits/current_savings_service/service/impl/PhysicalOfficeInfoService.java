@@ -2,8 +2,11 @@ package bits.current_savings_service.service.impl;
 
 import bits.current_savings_service.common.logger.CurrentSavingsServiceLogger;
 import bits.current_savings_service.common.utils.PageUtils;
+import bits.current_savings_service.common.utils.ResponseUtils;
+import bits.current_savings_service.domain.Enums.ResponseMessage;
 import bits.current_savings_service.domain.Office.PhysicalOfficeInfo;
 import bits.current_savings_service.dto.requests.PaginationRequest;
+import bits.current_savings_service.dto.response.ApiResponse;
 import bits.current_savings_service.dto.response.PaginationResponse;
 import bits.current_savings_service.repository.PhysicalOfficeRepository;
 import bits.current_savings_service.service.IPhysicalOfficeInfoService;
@@ -45,5 +48,17 @@ public class PhysicalOfficeInfoService implements IPhysicalOfficeInfoService {
         }
 
 
+    }
+
+    @Override
+    public ApiResponse<?> createOfficeInfo(PhysicalOfficeInfo physicalOfficeInfo) {
+        try {
+            physicalOfficeRepository.save(physicalOfficeInfo);
+            return ResponseUtils.createResponseObject(ResponseMessage.OPERATION_SUCCESSFUL, physicalOfficeInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("Error while getting group info: " + e.getMessage());
+            return ResponseUtils.createResponseObject(ResponseMessage.OPERATION_FAILED, null);
+        }
     }
 }

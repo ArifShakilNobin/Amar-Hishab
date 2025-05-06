@@ -19,8 +19,7 @@ public enum ApiResponseCode {
     RECORD_NOT_FOUND("E000103"),
     ALREADY_EXIST("AE00185"),
     VALIDATION_FAILED("VF000114"),
-
-    ;
+    OPERATION_FAILED("OF000115");
 
     private String responseCode;
 

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients
+//@EnableFeignClients
 //@RequiredArgsConstructor
 public class CurrentSavingsServiceApplication {
 
