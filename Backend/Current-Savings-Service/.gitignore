@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -31,3 +31,26 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# Environment files
+.env
+.env.*
+
+
+# GitHub Copilot / JetBrains caches
+.idea/
+.copilot/
+
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+
+# Temporary files
+tmp/
+
+service-jars/
