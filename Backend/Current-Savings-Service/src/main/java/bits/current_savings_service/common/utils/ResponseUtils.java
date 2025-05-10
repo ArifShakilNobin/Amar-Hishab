@@ -3,11 +3,13 @@ package bits.current_savings_service.common.utils;
 
 import bits.current_savings_service.dto.response.ApiResponse;
 import bits.current_savings_service.domain.Enums.ResponseMessage;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class ResponseUtils {
+
 
     public static <T> ApiResponse<T> createResponseObject(String message) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
@@ -43,9 +45,9 @@ public class ResponseUtils {
         return apiResponse;
     }
 
-    public static <T> ApiResponse<T> createResponseObject(String code, String message) {
+    public static <T> ApiResponse<T> createResponseObject(HttpStatus code, String message) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
-        apiResponse.setResponseCode(code);
+        apiResponse.setResponseCode(code.value()); // changed here
         apiResponse.setResponseMessage(message);
         apiResponse.setTimestamp(LocalDateTime.now());
         return apiResponse;

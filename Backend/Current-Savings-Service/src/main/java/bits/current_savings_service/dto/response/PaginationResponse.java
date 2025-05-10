@@ -1,23 +1,31 @@
 package bits.current_savings_service.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
+
 @Getter
-
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PaginationResponse<T> {
+    private List<T> items;
 
-    private Integer currentPage;
-    private Integer pageSize;
-    private Long totalItems;
-    private Integer totalPages;
-    private List<T> data;
+    @Builder.Default
+    private Pagination pagination = new Pagination();
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class Pagination {
+        private int currentPage;
+        private int pageSize;
+        private long totalItems;
+        private int totalPages;
+    }
 }

@@ -1,8 +1,9 @@
 package bits.current_savings_service.domain.Enums;
 
-import bits.current_savings_service.domain.Common.ApiResponse;
+import bits.current_savings_service.dto.response.ApiResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 import java.util.Objects;
 
@@ -10,25 +11,25 @@ import java.util.Objects;
 @Getter
 public enum ApiResponseCode {
 
-    OPERATION_SUCCESSFUL("OS100000"),
-    AlREADY_EXIST("AE00185"),
-    INTER_SERVICE_COMMUNICATION_ERROR("ISCE000111"),
-    DB_OPERATION_FAILED("DBOF000112"),
-    REQUEST_PROCESSING_FAILED("RPF000113"),
-    INVALID_REQUEST_DATA("E000102"),
-    RECORD_NOT_FOUND("E000103"),
-    ALREADY_EXIST("AE00185"),
-    VALIDATION_FAILED("VF000114"),
-    OPERATION_FAILED("OF000115");
+    OPERATION_SUCCESSFUL(HttpStatus.OK.value()),
+    AlREADY_EXIST(HttpStatus.BAD_REQUEST.value()),
+    INTER_SERVICE_COMMUNICATION_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+    DB_OPERATION_FAILED(HttpStatus.GATEWAY_TIMEOUT.value()),
+    REQUEST_PROCESSING_FAILED(HttpStatus.SERVICE_UNAVAILABLE.value()),
+    INVALID_REQUEST_DATA(HttpStatus.BAD_REQUEST.value()),
+    RECORD_NOT_FOUND(HttpStatus.NOT_FOUND.value()),
+    ALREADY_EXIST(HttpStatus.FORBIDDEN.value()),
+    VALIDATION_FAILED(HttpStatus.BAD_REQUEST.value()),
+    OPERATION_FAILED(HttpStatus.BAD_REQUEST.value());
 
-    private String responseCode;
+    private final int responseCode;
 
-    public static boolean isOperationSuccessful(ApiResponse apiResponse) {
-        return Objects.nonNull(apiResponse) && apiResponse.getResponseCode().equals(ApiResponseCode.OPERATION_SUCCESSFUL.getResponseCode());
+    public static boolean isOperationSuccessful(ApiResponse<?> apiResponse) {
+        return Objects.nonNull(apiResponse)
+                && apiResponse.getResponseCode() == OPERATION_SUCCESSFUL.getResponseCode();
     }
 
-    public static boolean isNotOperationSuccessful(ApiResponse apiResponse) {
+    public static boolean isNotOperationSuccessful(ApiResponse<?> apiResponse) {
         return !isOperationSuccessful(apiResponse);
     }
-
 }

@@ -17,12 +17,12 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class GlobalApiResponseWrapper implements ResponseBodyAdvice<Object> {
+
     private final HttpServletRequest httpServletRequest;
 
     @Override
     public boolean supports(MethodParameter returnType, Class converterType) {
-        // Apply only if the return type is not already ApiResponse
-        return !returnType.getParameterType().equals(ApiResponse.class);
+        return true;
     }
 
     @Override
@@ -33,10 +33,11 @@ public class GlobalApiResponseWrapper implements ResponseBodyAdvice<Object> {
                                   ServerHttpRequest request,
                                   ServerHttpResponse response) {
 
-        // If it's already ApiResponse, just inject path/timestamp if missing
+        String path = httpServletRequest.getRequestURI();
+
         if (body instanceof ApiResponse<?> apiResponse) {
             if (apiResponse.getPath() == null) {
-                apiResponse.setPath(httpServletRequest.getRequestURI());
+                apiResponse.setPath(path);
             }
             if (apiResponse.getTimestamp() == null) {
                 apiResponse.setTimestamp(LocalDateTime.now());
@@ -44,12 +45,11 @@ public class GlobalApiResponseWrapper implements ResponseBodyAdvice<Object> {
             return apiResponse;
         }
 
-        // Wrap any other response type in ApiResponse
         return ApiResponse.builder()
                 .responseCode(ResponseMessage.OPERATION_SUCCESSFUL.getResponseCode())
                 .responseMessage(ResponseMessage.OPERATION_SUCCESSFUL.getResponseMessage())
                 .data(body)
-                .path(httpServletRequest.getRequestURI())
+                .path(path)
                 .timestamp(LocalDateTime.now())
                 .build();
     }

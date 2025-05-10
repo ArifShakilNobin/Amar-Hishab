@@ -24,14 +24,14 @@ public class GlobalExceptionHandler {
                 .orElse("Validation failed");
 
         log.warn("Validation error: {}", errorMsg);
-        return buildErrorResponse("400", errorMsg, request.getRequestURI());
+        return buildErrorResponse((ResponseMessage.VALIDATION_FAILED.getResponseCode()), errorMsg, request.getRequestURI());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<Object> handleIllegalArgumentException(IllegalArgumentException ex, HttpServletRequest request) {
         log.warn("IllegalArgumentException: {}", ex.getMessage());
-        return buildErrorResponse("400", ex.getMessage(), request.getRequestURI());
+        return buildErrorResponse(ResponseMessage.VALIDATION_FAILED.getResponseCode(), ex.getMessage(), request.getRequestURI());
     }
 
     @ExceptionHandler(Exception.class)
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
 
     }
 
-    private ApiResponse<Object> buildErrorResponse(String code, String message, String path) {
+    private ApiResponse<Object> buildErrorResponse(int code, String message, String path) {
         return ApiResponse.builder()
                 .responseCode(code)
                 .responseMessage(message)

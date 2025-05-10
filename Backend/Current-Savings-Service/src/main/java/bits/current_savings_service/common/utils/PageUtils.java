@@ -13,14 +13,19 @@ public class PageUtils {
     public static <E> PaginationResponse<E> mapToPaginationResponseDto(
             Page<E> page, PaginationRequest paginationRequest) {
 
-        PaginationResponse<E> paginationResponse = new PaginationResponse<>();
-        paginationResponse.setTotalItems(page.getTotalElements());
-        paginationResponse.setCurrentPage(page.getNumber() + 1);
-        paginationResponse.setPageSize(paginationRequest.getPageSize());
-        paginationResponse.setTotalPages(page.getTotalPages());
-        paginationResponse.setData(page.getContent());
-        return paginationResponse;
+        PaginationResponse.Pagination pagination = PaginationResponse.Pagination.builder()
+                .currentPage(page.getNumber() + 1)
+                .pageSize(paginationRequest.getPageSize())
+                .totalItems(page.getTotalElements())
+                .totalPages(page.getTotalPages())
+                .build();
+
+        return PaginationResponse.<E>builder()
+                .items(page.getContent())
+                .pagination(pagination)
+                .build();
     }
+
 
     public static Pageable getPageable(PaginationRequest request) {
 

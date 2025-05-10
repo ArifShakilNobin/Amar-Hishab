@@ -1,6 +1,6 @@
 package bits.current_savings_service.common.handlers;
 
-import bits.current_savings_service.domain.Common.ApiResponse;
+import bits.current_savings_service.dto.response.ApiResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,14 +16,14 @@ public abstract class BaseExceptionHandler extends ResponseEntityExceptionHandle
     protected static final Logger errorLogger = LoggerFactory.getLogger("errorLogger");
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
-    protected ApiResponse<Void> buildApiResponse(String messageCode, String message) {
+    protected ApiResponse<Void> buildApiResponse(int messageCode, String message) {
         ApiResponse<Void> apiResponse = new ApiResponse<>();
         apiResponse.setResponseMessage(message);
         apiResponse.setResponseCode(messageCode);
         return apiResponse;
     }
 
-    protected ApiResponse<Object> buildApiResponse(String messageCode, String message, Object data) {
+    protected ApiResponse<Object> buildApiResponse(int messageCode, String message, Object data) {
         ApiResponse<Object> apiResponse = new ApiResponse<>();
         apiResponse.setResponseMessage(message);
         apiResponse.setResponseCode(messageCode);
