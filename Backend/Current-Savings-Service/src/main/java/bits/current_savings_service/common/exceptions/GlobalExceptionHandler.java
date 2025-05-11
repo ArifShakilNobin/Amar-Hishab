@@ -37,6 +37,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse<Object> handleGenericException(Exception ex, HttpServletRequest request) {
+        String path = request.getRequestURI();
+
+        // Let Swagger get the raw error if it's an OpenAPI request
+        if (isSwaggerPath(path)) {
+            throw new RuntimeException(ex);
+        }
+
         log.error("Unhandled exception: {}", ex.getMessage(), ex);
         return buildErrorResponse(
                 ResponseMessage.VALIDATION_FAILED.getResponseCode(),
@@ -54,5 +61,10 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
     }
+
+    private boolean isSwaggerPath(String path) {
+        return path.startsWith("/v3/api-docs") || path.startsWith("/swagger-ui") || path.startsWith("/swagger-resources");
+    }
+
 }
 

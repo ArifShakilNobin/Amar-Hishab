@@ -35,6 +35,10 @@ public class GlobalApiResponseWrapper implements ResponseBodyAdvice<Object> {
 
         String path = httpServletRequest.getRequestURI();
 
+        // Bypass Swagger/OpenAPI endpoints
+        if (path.startsWith("/v3/api-docs") || path.startsWith("/swagger-ui") || path.startsWith("/swagger-resources")) {
+            return body;
+        }
         if (body instanceof ApiResponse<?> apiResponse) {
             if (apiResponse.getPath() == null) {
                 apiResponse.setPath(path);

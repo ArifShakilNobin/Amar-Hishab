@@ -8,6 +8,8 @@ import bits.current_savings_service.domain.Office.PhysicalOfficeInfo;
 import bits.current_savings_service.dto.response.ApiResponse;
 import bits.current_savings_service.dto.response.PaginationResponse;
 import bits.current_savings_service.service.IPhysicalOfficeInfoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,12 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(AppUtils.BASE_URL + "/physical-office")
+@Tag(name = "Physical Office", description = "Physical Office")
 public class PhysicalOfficeController extends BaseResource {
 
     private final IPhysicalOfficeInfoService iphysicalOfficeInfoService;
 
+    @Operation(summary = "Create Physical Office", description = "Create Physical Office")
     @PostMapping
     public ApiResponse<?> createPhysicalOfficeInfo(@RequestBody PhysicalOfficeInfo physicalOfficeInfo) {
         return iphysicalOfficeInfoService.createOfficeInfo(physicalOfficeInfo);

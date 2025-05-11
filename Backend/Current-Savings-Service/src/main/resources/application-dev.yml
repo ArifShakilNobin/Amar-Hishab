@@ -55,3 +55,13 @@ logging:
   config: classpath:log/logback-alpha.xml
   level:
     org.hibernate.orm: INFO
+
+springdoc:
+  paths-to-match: /**
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+    disable-swagger-default-url: true
