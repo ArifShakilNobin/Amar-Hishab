@@ -58,7 +58,8 @@ public class PhysicalOfficeInfoService implements IPhysicalOfficeInfoService {
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("Error while getting group info: " + e.getMessage());
-            return ResponseUtils.createResponseObject(ResponseMessage.OPERATION_FAILED, null);
+
+            return ResponseUtils.createResponseObject(ResponseMessage.INTERNAL_SERVICE_EXCEPTION, null);
         }
     }
 }
